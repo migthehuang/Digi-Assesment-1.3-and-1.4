@@ -1,5 +1,5 @@
 body {
-    background-image: url("./images/books.jpg");
+    background-image: url("./images/gab.jpg");
     background-size: cover;
 }
 
@@ -74,7 +74,7 @@ nav a:hover::before{
     border-color: aliceblue;
  }
 header{
-    background-color:burlywood;
+    background-color:rgb(118, 106, 247);
 }
 
 header::after{
@@ -95,13 +95,15 @@ header a{
     display: flex;
     justify-content: center;
     align-items: center;
-    color: azure;
+    color:rgb(118, 106, 247);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: larger;
 }
 
 
 p {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    color: azure;
+    color: rgb(118, 106, 247);
     display: flex;
     justify-content: center;
     align-items: center;

@@ -12,16 +12,15 @@ def get_db_connection():
 def home():
     
     if request.method == 'POST':
-        title = request.form['search']
+        search = request.form['search']
         return redirect(url_for('search', term=search ))
         
-        if title == "dad":
-            return redirect(url_for('dad'))  
+        #if title == "dad":
+            #return redirect(url_for('dad'))  
 
-        else:
-            abort(404)
-    else:
-        return render_template ('home.html')
+        #else:
+            #abort(404)
+    return render_template ('home.html')
             
 
 
@@ -42,7 +41,6 @@ def search(term):
 
     return render_template('search.html', term=search_term, books=books)
 
-#term=term, books=books
 
 @app.errorhandler(404)
 def error_404(error):
