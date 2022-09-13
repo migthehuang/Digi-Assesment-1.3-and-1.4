@@ -1,6 +1,7 @@
 body {
     background-image: url("./images/gab.jpg");
     background-size: cover;
+    height: 100%;
 }
 
 *{
