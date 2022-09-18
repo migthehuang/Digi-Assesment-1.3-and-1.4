@@ -4,18 +4,39 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}" type="text/css">
     <title>Search</title>
 </head>
 <body>
-    <h1>Here's what we found for {{term}}</h1>
-   <div>
+    <header>
+        <a class="logo" href="/" type="button">Biblioteca</a>
+        <div class="container">
+            <nav class="navbar">
+                <ul>
+                    <li><a href="/templates/data.html">Books</a></li>
+                    <li><a href="#">Add</a></li>
+                    <li><a href="#">If</a></li>
+                    <li><a href="#">This</a></li>
+                    <li><a href="#">Works</a></li>
+                </ul>
+            </nav>
+    
+        </div>
+        
+    </header>
+    <h1>Here's what we found for "{{term}}"</h1>
+    <br>
+    {%if books%}
+   <div class="data" >
         {%for book in books%}
             <h2>{{book.title}}</h2>
             <p>{{book.author}}</p>
             <p>{{book.date_published}}</p>
         {%endfor%}
-   </div>
-    
+    </div>
+    {%else%}
+        <h1>{{term}} is not in our library</h1>    
+    {%endif%}
     
 </body>
 </html>

@@ -5,11 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}" type="text/css">
-    <title>Migi's Library</title>
+    <title>Document</title>
 </head>
-
-<body>
-
 <header>
     <a class="logo" href="/" type="button">Biblioteca</a>
     <div class="container">
@@ -26,18 +23,13 @@
     </div>
     
 </header>
-
-    <div class="head">
-        <h1>My Library</h1>
-    </div>
-    <div class="search">
-    <p>En la Biblioteca</p>
-    <br>    
-    <form method="POST">
-        <input type="text" id="input" name="search" placeholder="Search our Database">
-        <input type="submit" value="Search">
-    </form>
-    </div>
+<h1>These are our books</h1>
+    {%for data in datas%}
+        <h1>{{data[1]}}</h1>
+        <h2>{{data[2]}}</h2>
+        <h2>{{data[3]}}</h2>
+    {%endfor%}
+<body>
+    
 </body>
 </html>
-
