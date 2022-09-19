@@ -45,10 +45,8 @@ def data():
     data = conn.execute('SELECT * FROM books').fetchall()
     print(len(data))
     conn.close()
-    #add_title = "%"+title+"%"
-    #add_author = "%"+author+"%"
-    #add_date_published = "%"+date_published+"%"
-    #conn.execute('INSERT INTO books (title, author, date_published)', 'VALUES (?,?,?)'), (add_title, add_author, add_date_published)
+    
+    
     return render_template('data.html', datas=data)
 
 @app.route('/hello')
@@ -59,19 +57,35 @@ def hello():
 
 @app.route('/add', methods = ['POST', 'GET'])
 def add():
-    #if request.method == 'POST':
-        #title = request.form['title']
-        #author = request.form['author']
-        #date_published = request.form['date_published']
-        #return redirect(url_for('data', title=title, author=author, date_published=date_published))
-    #conn = get_db_connection()
-    
-    #conn.close()
+    if request.method == 'POST':
+        add_title = request.form['title']
+        add_author = request.form['author']
+        add_date_published = request.form['date_published']
+
+        conn = get_db_connection()
+        conn.execute('INSERT INTO books (title, author, date_published) VALUES (?,?,?)', (add_title, add_author, add_date_published))   
+        conn.commit()
+        conn.close()
+        return redirect(url_for('data', title=add_title, author=add_author, date_published=add_date_published, add=add))
+
     
     return render_template('add.html')
-    
-    #title=add_title, author=add_author, date_published=add_date_published)
 
+@app.route('/delete', methods = ['POST', 'GET'])
+def delete():
+    if request.method == 'POST':
+        rm_title = request.form['rm_title']
+        rm_author = request.form['rm_author']
+        rm_date_published = request.form['rm_date_published']
+
+        conn = get_db_connection()
+        conn.execute('DELETE from books WHERE title like ? or author like ? or date_published like ?', (rm_title, rm_author, rm_date_published))   
+        conn.commit()
+        conn.close()
+        return redirect(url_for('data', title=rm_title, author=rm_author, date_published=rm_date_published))
+    return render_template('delete.html')
+    
+    
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug= True)
 

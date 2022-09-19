@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}" type="text/css">
     <title>Document</title>
 </head>
+<body>
+    
 <header>
     <a class="logo" href="/" type="button">Biblioteca</a>
     <div class="container">
@@ -14,7 +16,7 @@
             <ul>
                 <li><a href="{{url_for('data')}}">Books</a></li>
                 <li><a href="{{url_for('add')}}">Add</a></li>
-                <li><a href="#">If</a></li>
+                <li><a href="{{url_for('delete')}}">Delete</a></li>
                 <li><a href="#">This</a></li>
                 <li><a href="#">Works</a></li>
             </ul>
@@ -29,7 +31,6 @@
         <h2>{{data[2]}}</h2>
         <h2>{{data[3]}}</h2>
     {%endfor%}
-<body>
     
 </body>
 </html>
