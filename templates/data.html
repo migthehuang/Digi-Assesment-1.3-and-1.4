@@ -17,7 +17,6 @@
                 <li><a href="{{url_for('data')}}">Books</a></li>
                 <li><a href="{{url_for('add')}}">Add</a></li>
                 <li><a href="{{url_for('delete')}}">Delete</a></li>
-                <li><a href="#">This</a></li>
                 <li><a href="#">Works</a></li>
             </ul>
         </nav>
@@ -26,11 +25,16 @@
     
 </header>
 <h1>These are our books</h1>
+<div class="display">
     {%for data in datas%}
-        <h1>{{data[1]}}</h1>
-        <h2>{{data[2]}}</h2>
-        <h2>{{data[3]}}</h2>
-    {%endfor%}
+    <h1>{{data[1]}}</h1>
+    <h2>{{data[2]}}</h2>
+    <h2>{{data[3]}}</h2>
+    <a href="{{url_for('borrow',book_id=data.idbooks)}}">Borrow</a>
+{%endfor%}
+</div>
+
+   
     
 </body>
 </html>

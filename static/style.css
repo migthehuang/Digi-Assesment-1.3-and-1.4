@@ -126,3 +126,8 @@ form {
     align-items: left;
     margin-left: 100px;
 }
+
+.display a{
+    text-decoration: none;
+
+}

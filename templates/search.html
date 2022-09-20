@@ -15,8 +15,7 @@
                 <ul>
                     <li><a href="{{url_for('data')}}">Books</a></li>
                     <li><a href="{{url_for('add')}}">Add</a></li>
-                    <li><a href="{{url_for('delete')}}">">If</a></li>
-                    <li><a href="#">This</a></li>
+                    <li><a href="{{url_for('delete')}}">If</a></li>
                     <li><a href="#">Works</a></li>
                 </ul>
             </nav>
@@ -32,6 +31,7 @@
             <h2>{{book.title}}</h2>
             <p>{{book.author}}</p>
             <p>{{book.date_published}}</p>
+            <a href="{{url_for('borrow', book_id=book_id)}}">Borrow</a>
         {%endfor%}
     </div>
     {%else%}

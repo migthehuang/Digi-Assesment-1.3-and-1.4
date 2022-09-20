@@ -1,4 +1,3 @@
-from turtle import title
 from flask import Flask, render_template, request, url_for, redirect, abort
 import sqlite3
 
@@ -9,6 +8,7 @@ def get_db_connection():
     conn.row_factory=sqlite3.Row
     return conn
 
+#This is using the books table and is for searching the Database for books only. 
 @app.route('/', methods = ['POST', 'GET'])
 def home():
     
@@ -16,11 +16,9 @@ def home():
         search = request.form['search']
         return redirect(url_for('search', term=search ))
         
-        
+
     return render_template ('home.html')
             
-
-
 @app.route('/dad') 
 def dad():
     return render_template('dad.html')
@@ -85,6 +83,14 @@ def delete():
         return redirect(url_for('data', title=rm_title, author=rm_author, date_published=rm_date_published))
     return render_template('delete.html')
     
+@app.route('/borrow/<int:book_id>', methods = ['POST', 'GET'])
+def borrow(book_id):
+
+    conn=get_db_connection()
+    conn.execute('SELECT * from books WHERE idbooks is ?',(int(book_id)))
+    conn.commit()
+    conn.close()
+    return render_template('borrow.html')
     
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug= True)
