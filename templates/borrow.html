@@ -23,10 +23,15 @@
         </div>
     </header>
     <h1>Borrow a book</h1>
+    <h2>Please input your information</h2>
     <form method="post">
         <input type="text" id="fname" name="fname" placeholder="First Name">
         <input type="text" id="lname" name="lname" placeholder="Last Name">
         <input type="submit" name="borrow" id="borrow">
+        {%for borrowed_books in books%}
+        <h2>{{book.title}}</h2>
+        {%endfor%}
+        
 
     </form>
 </body>

@@ -32,6 +32,7 @@ def search(term):
     conn = get_db_connection()
     search_term = "%"+term+"%"
     books = conn.execute('SELECT * FROM books WHERE title LIKE ?  or author LIKE ? or date_published like?',(search_term,search_term, search_term)).fetchall()
+    conn.commit
     conn.close()
      
     return render_template('search.html', term=term, books=books)
@@ -85,13 +86,28 @@ def delete():
     
 @app.route('/borrow/<int:book_id>', methods = ['POST', 'GET'])
 def borrow(book_id):
-
-    conn=get_db_connection()
-    conn.execute('SELECT * from books WHERE idbooks is ?',(int(book_id)))
+    book_id=[(int(book_id))] 
+    conn=get_db_connection
+    borrowed_books=conn.execute('SELECT * from books WHERE idbooks is ?',(book_id))
     conn.commit()
-    conn.close()
-    return render_template('borrow.html')
-    
+    conn.close()    
+
+    if request.method == 'POST':
+        borrower_fname = request.form['fname']
+        borrower_lname = request.form['lname']
+
+        conn=get_db_connection()
+        borrower=conn.execute('INSERT INTO borrowers (fname,lname) VALUES (?,?)', (borrower_fname), (borrower_lname))
+        conn.commit()
+        conn.close()
+        return redirect(url_for('thankyou'))
+
+    return render_template('borrow.html', borrowed_books=borrowed_books, borrower=borrower)
+
+@app.route('/thankyou')
+def thankyou():
+    return render_template('thankyou.html')
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug= True)
 
