@@ -87,22 +87,25 @@ def delete():
 @app.route('/borrow/<int:book_id>', methods = ['POST', 'GET'])
 def borrow(book_id):
     book_id=[(int(book_id))] 
-    conn=get_db_connection
-    borrowed_books=conn.execute('SELECT * from books WHERE idbooks is ?',(book_id))
+    conn=get_db_connection()
+    bookid=conn.execute('SELECT * from books WHERE idbooks is ?',(book_id))
     conn.commit()
     conn.close()    
 
     if request.method == 'POST':
         borrower_fname = request.form['fname']
         borrower_lname = request.form['lname']
+        borrower_email = request.form['email']
+        borrower_number = request.form['number']  
 
         conn=get_db_connection()
-        borrower=conn.execute('INSERT INTO borrowers (fname,lname) VALUES (?,?)', (borrower_fname), (borrower_lname))
-        conn.commit()
+        borrower=conn.execute('INSERT INTO borrowers (fname,lname,borrower_email,borrower_number) VALUES (?,?,?,?)', ((borrower_fname), (borrower_lname), (borrower_email), (borrower_number)))
+        borrowed=conn.execute('DELETE FROM books where idbooks is ?',(book_id))
+        conn.commit() 
         conn.close()
-        return redirect(url_for('thankyou'))
+        return redirect(url_for('thankyou', borrower=borrower, borrowed=borrowed))
 
-    return render_template('borrow.html', borrowed_books=borrowed_books, borrower=borrower)
+    return render_template('borrow.html', bookid=bookid)
 
 @app.route('/thankyou')
 def thankyou():
