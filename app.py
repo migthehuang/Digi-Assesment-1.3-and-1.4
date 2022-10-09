@@ -73,15 +73,14 @@ def add():
 @app.route('/delete', methods = ['POST', 'GET'])
 def delete():
     if request.method == 'POST':
-        rm_title = request.form['rm_title']
-        rm_author = request.form['rm_author']
-        rm_date_published = request.form['rm_date_published']
+        rm_book_id = request.form['book_id']
+        rm_book_id = [(int(rm_book_id))]
 
         conn = get_db_connection()
-        conn.execute('DELETE from books WHERE title like ? or author like ? or date_published like ?', (rm_title, rm_author, rm_date_published))   
+        conn.execute('DELETE from books where idbooks is ?', (rm_book_id))  
         conn.commit()
         conn.close()
-        return redirect(url_for('data', title=rm_title, author=rm_author, date_published=rm_date_published))
+        return redirect(url_for('data'))
     return render_template('delete.html')
     
 @app.route('/borrow/<int:book_id>', methods = ['POST', 'GET'])
@@ -100,10 +99,10 @@ def borrow(book_id):
 
         conn=get_db_connection()
         borrower=conn.execute('INSERT INTO borrowers (fname,lname,borrower_email,borrower_number) VALUES (?,?,?,?)', ((borrower_fname), (borrower_lname), (borrower_email), (borrower_number)))
-        borrowed=conn.execute('DELETE FROM books where idbooks is ?',(book_id))
+        #borrowed=conn.execute('DELETE FROM books where idbooks is ?',(book_id))
         conn.commit() 
         conn.close()
-        return redirect(url_for('thankyou', borrower=borrower, borrowed=borrowed))
+        return redirect(url_for('thankyou', borrower=borrower)), #borrowed=borrowed))
 
     return render_template('borrow.html', bookid=bookid)
 

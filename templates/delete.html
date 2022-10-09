@@ -18,7 +18,7 @@
                     <li><a href="{{url_for('data')}}">Books</a></li>
                     <li><a href="{{url_for('add')}}">Add</a></li>
                     <li><a href="{{url_for('delete')}}">Delete</a></li>
-                    <li><a href="#">Works</a></li>
+                    <li><a href="#">Return</a></li>
                 </ul>
             </nav>
     
@@ -28,9 +28,8 @@
     <h1>Delete a book</h1>
     <div class="rm">
         <form method="POST">
-            <input type="text" id="rm_title" name="rm_title" placeholder="Title">
-            <input type="text" id="rm_author" name="rm_author" placeholder="Author">
-            <input type="number" id="rm_date_published" name="rm_date_published" placeholder="Date Published">
+            
+            <input type="number" id="rm_book_id" name="book_id" placeholder="book id">
             <input type= "submit" name="enter" id="enter">
         </form>
 
