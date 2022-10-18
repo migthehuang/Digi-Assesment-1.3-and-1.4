@@ -32,6 +32,7 @@
             <p>{{book.author}}</p>
             <p>{{book.date_published}}</p>
             <a href="{{url_for('borrow', book_id=book.idbooks)}}">Borrow</a>
+    
         {%endfor%}
     </div>
     {%else%}

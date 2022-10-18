@@ -30,7 +30,7 @@
         <input type="text" id="email" name="email" placeholder="Email Address">
         <input type="number" id="number" name="number" placeholder="Phone Number">
         <input type="submit" name="borrow" id="borrow">
-        {%for borrowed_books in books%}
+        {%for book in books%}
         <h2>{{book.title}}</h2>
         {%endfor%}
         
