@@ -31,7 +31,7 @@
         <h2>{{data[2]}}</h2>
         <h2>{{data[3]}}</h2>
         <p>{{data[0]}}</p>
-        <a href="{{url_for('borrow',book_id=data.idbooks)}}">Borrow</a>
+        <a href="{{url_for('borrow',old_book_id=data.idbooks)}}">Borrow</a>
      
     {%endfor%}
 </div>
