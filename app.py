@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, url_for, redirect, abort
 import sqlite3
-from datetime import datetime, timedelta
+from datetime import date, datetime, timedelta
 
 
 app = Flask(__name__) 
@@ -105,18 +105,22 @@ def borrow(old_book_id):
         borrower_email = request.form['email']
         borrower_number = request.form['number'] 
         
-        date=datetime.utcnow()
-        date_now=datetime.strftime(date,'%B %d %Y - %H:%M:%S')
+        
         conn=get_db_connection()
         borrower_insert=conn.execute('INSERT INTO borrowers (fname,lname,borrower_email,borrower_number) VALUES (?,?,?,?)', (borrower_fname, borrower_lname, borrower_email, borrower_number))
         conn.commit()
+
         row=conn.execute('SELECT idborrowers FROM borrowers WHERE fname=? AND lname=?',(borrower_fname, borrower_lname))
         borrowers=row.fetchone()   
-        idborrowers=borrowers[0]
-
-        borrower_request=conn.execute('INSERT INTO borrowed_books(books_idbooks, borrowers_idborrowers, date_borrowed) VALUES(?,?,?)', (book_id, idborrowers, date_now))
+        idborrowers=int(borrowers[0])
+    
+        date_borrowed=date.today()
+        due_date=date.today()+timedelta(days = 14)
+        #print(due_date)
+        
+        borrower_request=conn.execute('INSERT INTO borrowed_books(books_idbooks, borrowers_idborrowers, date_borrowed, date_due) VALUES(?,?,?,?)', (book_id, idborrowers, date_borrowed,due_date))
         conn.commit() 
-
+        conn.close
         return redirect(url_for('thankyou', borrower_insert=borrower_insert, borrower_request=borrower_request))
 
 
