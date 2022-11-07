@@ -114,6 +114,8 @@ header a{
     align-items: left;
     margin-left: 100px;
 }
+
+.search 
 .data{
     display:list-item;
     justify-content: left;
