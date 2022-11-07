@@ -89,15 +89,10 @@ def delete():
     return render_template('delete.html')
     
 #the hardedt bit so far
-@app.route('/borrow/<int:old_book_id>', methods = ['POST', 'GET'])
-def borrow(old_book_id):
-    book_id=[(int(old_book_id))]
-    conn=get_db_connection()
-    bookid=conn.execute('SELECT * from books WHERE idbooks is ?',(book_id))
-   
-    conn.commit()
-    conn.close()    
-
+@app.route('/borrow/<int:book_id>', methods = ['POST', 'GET'])
+def borrow(book_id):
+    book_idint=int(book_id)
+    
     if request.method == 'POST':
         #for the borrowers part
         borrower_fname = request.form['fname']
@@ -105,12 +100,11 @@ def borrow(old_book_id):
         borrower_email = request.form['email']
         borrower_number = request.form['number'] 
         
-        
         conn=get_db_connection()
-        borrower_insert=conn.execute('INSERT INTO borrowers (fname,lname,borrower_email,borrower_number) VALUES (?,?,?,?)', (borrower_fname, borrower_lname, borrower_email, borrower_number))
+        conn.execute('INSERT INTO borrowers (fname,lname,borrower_email,borrower_number) VALUES (?,?,?,?)', (borrower_fname, borrower_lname, borrower_email, borrower_number,))
         conn.commit()
 
-        row=conn.execute('SELECT idborrowers FROM borrowers WHERE fname=? AND lname=?',(borrower_fname, borrower_lname))
+        row=conn.execute('SELECT idborrowers FROM borrowers WHERE fname=? AND lname=?',(borrower_fname, borrower_lname,))
         borrowers=row.fetchone()   
         idborrowers=int(borrowers[0])
     
@@ -118,21 +112,22 @@ def borrow(old_book_id):
         due_date=date.today()+timedelta(days = 14)
         #print(due_date)
         
-        borrower_request=conn.execute('INSERT INTO borrowed_books(books_idbooks, borrowers_idborrowers, date_borrowed, date_due) VALUES(?,?,?,?)', (book_id, idborrowers, date_borrowed,due_date))
+        conn.execute('INSERT INTO borrowed_books (books_idbooks,borrowers_idborrowers,date_borrowed,date_due) VALUES(?,?,?,?)', (book_idint,idborrowers, date_borrowed,due_date,))
         conn.commit() 
         conn.close
-        return redirect(url_for('thankyou', borrower_insert=borrower_insert, borrower_request=borrower_request))
+        return redirect(url_for('thankyou'))
 
 
-    return render_template('borrow.html', bookid=bookid)
+    return render_template('borrow.html')
 
 @app.route('/thankyou')
 def thankyou():
     return render_template('thankyou.html')
 
+@app.route('/loans')
+def loans():
+    return render_template('loans.html')
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug= True)
-
-    
-
-
