@@ -79,7 +79,7 @@ def add():
 def delete():
     if request.method == 'POST':
         rm_book_id = request.form['book_id']
-        rm_book_id = [(int(rm_book_id))]
+        rm_book_id = int(rm_book_id)
 
         conn = get_db_connection()
         conn.execute('DELETE from books where idbooks is ?', (rm_book_id))  
@@ -87,7 +87,7 @@ def delete():
         conn.close()
         return redirect(url_for('data'))
     return render_template('delete.html')
-    
+                                                                                                                                                                                                                                                                                    
 #the hardedt bit so far
 @app.route('/borrow/<int:book_id>', methods = ['POST', 'GET'])
 def borrow(book_id):
@@ -126,7 +126,11 @@ def thankyou():
 
 @app.route('/loans')
 def loans():
-    return render_template('loans.html')
+    conn=get_db_connection()
+    loans=conn.execute('SELECT borrowed_books.idloan, books.title, borrowed_books.borrowers_idborrowers, books.idbooks, borrowers.fname, borrowers.lname, borrowed_books.date_borrowed, borrowed_books.date_due FROM borrowed_books JOIN books ON borrowed_books.books_idbooks=books.idbooks JOIN borrowers ON borrowed_books.borrowers_idborrowers=borrowers.idborrowers',).fetchall()
+    conn.close()
+
+    return render_template('loans.html',loans=loans)
 
 
 if __name__ == '__main__':

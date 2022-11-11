@@ -12,6 +12,7 @@ body {
 
 } */
 
+/*This is for the navbar*/
 .container{
     margin: 0 auto;
 
@@ -59,6 +60,8 @@ nav a:hover::before{
     width: 100%;
     background-color: #444;
 }
+
+/*This for the logo, create image on canva and replace later*/
 .logo{
     margin-top: 10px;
     margin-bottom: 8px;
@@ -103,8 +106,6 @@ header a{
     margin-top: 100px;
 }
 
-
-
 .search p {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 20px;
@@ -115,7 +116,33 @@ header a{
     margin-left: 100px;
 }
 
-.search 
+.search h2{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 25px;
+    color: rgb(1, 42, 116);
+    display: flex;
+    align-items: left;
+    margin-left: 100px;
+}
+
+.search input[type=text]{
+    width:50%;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 15px;
+    color:black;
+    background-color: rgba(1, 35, 163, 0.2);
+    border: 2px solid rgb(1, 42, 116);
+    border-radius: 5px;
+}
+
+.submit{
+    background-color: rgb(206, 210, 222);
+    border: 2px solid rgb(1, 35, 160);
+    border-radius: 240px;
+
+}
+
+
 .data{
     display:list-item;
     justify-content: left;

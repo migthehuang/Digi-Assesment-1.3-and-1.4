@@ -4,9 +4,38 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}" type="text/css">
     <title>Document</title>
 </head>
 <body>
-    <h1>These are the books on loan</h1>
+    <header>
+        <a class="logo" href="/" type="button">Biblioteca</a>
+        <div class="container">
+            <nav class="navbar">
+                <ul>
+                    <li><a href="{{url_for('data')}}">Books</a></li>
+                    <li><a href="{{url_for('add')}}">Add</a></li>
+                    <li><a href="{{url_for('delete')}}">If</a></li>
+                    <li><a href="{{url_for('loans')}}">Return</a></li>
+                </ul>
+            </nav>
+    
+        </div>
+        
+    </header>
+   
+    <div class="on_loan">
+        <h1>These are the books on loan</h1>
+        <div>
+            {%for loan in loans%}
+            <h2 id="title">Loan{{loan.idloan}}</h2>
+            <p>Book:{{loan.title}}, ID:{{loan.idloan}}</p>
+            <p>Borrower:{{loan.fname}} {{loan.lname}}, {{loan.idborrowers}} </p>
+            <p>Date Borrrowed:{{loan.date_borrowed}}</p>
+            <p>Date Due:{{loan.date_due}}</p>
+            {%endfor%}
+            <a href=""></a>
+        </div>
+    </div>
 </body>
 </html>
