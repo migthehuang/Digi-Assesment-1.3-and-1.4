@@ -15,11 +15,11 @@ def get_db_connection():
 def home():
     
     if request.method == 'POST':
-        search = request.form['search']
+        search = request.form['search']    
         return redirect(url_for('search', term=search ))
-        
-
+    
     return render_template ('home.html')
+
 #not really important anymore          
 @app.route('/dad') 
 def dad():
@@ -87,7 +87,7 @@ def delete():
         conn.close()
         return redirect(url_for('data'))
     return render_template('delete.html')
-                                                                                                                                                                                                                                                                                    
+
 #the hardedt bit so far
 @app.route('/borrow/<int:book_id>', methods = ['POST', 'GET'])
 def borrow(book_id):
@@ -102,6 +102,7 @@ def borrow(book_id):
         
         conn=get_db_connection()
         conn.execute('INSERT INTO borrowers (fname,lname,borrower_email,borrower_number) VALUES (?,?,?,?)', (borrower_fname, borrower_lname, borrower_email, borrower_number,))
+        titles=conn.execute('SELECT title FROM books WHERE idbooks=?',(book_id))
         conn.commit()
 
         row=conn.execute('SELECT idborrowers FROM borrowers WHERE fname=? AND lname=?',(borrower_fname, borrower_lname,))
@@ -112,7 +113,7 @@ def borrow(book_id):
         due_date=date.today()+timedelta(days = 14)
         #print(due_date)
         
-        conn.execute('INSERT INTO borrowed_books (books_idbooks,borrowers_idborrowers,date_borrowed,date_due) VALUES(?,?,?,?)', (book_idint,idborrowers, date_borrowed,due_date,))
+        conn.execute('INSERT INTO borrowed_books (books_idbooks,borrowers_idborrowers,date_borrowed,date_due, returned) VALUES(?,?,?,?,0)', (book_idint,idborrowers, date_borrowed,due_date,))
         conn.commit() 
         conn.close
         return redirect(url_for('thankyou'))
@@ -127,11 +128,16 @@ def thankyou():
 @app.route('/loans')
 def loans():
     conn=get_db_connection()
-    loans=conn.execute('SELECT borrowed_books.idloan, books.title, borrowed_books.borrowers_idborrowers, books.idbooks, borrowers.fname, borrowers.lname, borrowed_books.date_borrowed, borrowed_books.date_due FROM borrowed_books JOIN books ON borrowed_books.books_idbooks=books.idbooks JOIN borrowers ON borrowed_books.borrowers_idborrowers=borrowers.idborrowers',).fetchall()
+    loans=conn.execute('SELECT borrowed_books.idloan, books.title, borrowed_books.borrowers_idborrowers, books.idbooks, borrowers.fname, borrowers.lname, borrowed_books.date_borrowed, borrowed_books.date_due FROM borrowed_books JOIN books ON borrowed_books.books_idbooks=books.idbooks JOIN borrowers ON borrowed_books.borrowers_idborrowers=borrowers.idborrowers WHERE returned=0',).fetchall()
     conn.close()
 
     return render_template('loans.html',loans=loans)
 
+@app.route('/verify/<int:loan_id>', methods=['GET','POST'])
+def verify():
+    #if request.method == 'POST':
+
+    return render_template('verify.html')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug= True)

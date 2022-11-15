@@ -38,7 +38,7 @@ nav a:hover{
 nav li{
     display: inline-block;
     margin-right: 40px;
-    padding-top: 6px;
+    padding-top: 17px;
     font-weight: bold;
     position: relative;
 }
@@ -48,7 +48,6 @@ nav a::before{
     display:block;
     height: 2px;
     background-color:azure;
-
     position: absolute;
     top:0;
     width:0;
@@ -63,15 +62,14 @@ nav a:hover::before{
 
 /*This for the logo, create image on canva and replace later*/
 .logo{
-    margin-top: 10px;
-    margin-bottom: 8px;
+    width: 2cm;
+    height: 2cm;
+    margin: 0 auto;
     font-size: larger;
     margin-left: 40px;
-    padding: 2px;
-    border-style: solid;
-    border-width: 2px;
-    border-color:azure;
     color: azure;
+    padding-bottom:2px
+    
 }
  .logo:hover{
     color:#444;
@@ -93,7 +91,9 @@ header a{
     color: rgb(255, 255, 255);
     text-transform: uppercase;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    border:20px;
+    display: flex;
+    align-items:center;
+
 }
 .head{
     display: flex;
@@ -106,6 +106,7 @@ header a{
     margin-top: 100px;
 }
 
+/*Searching on the home page*/
 .search p {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 20px;
@@ -136,10 +137,19 @@ header a{
 }
 
 .submit{
+    width: 1.4cm;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     background-color: rgb(206, 210, 222);
     border: 2px solid rgb(1, 35, 160);
-    border-radius: 240px;
+    border-radius: 40px;
+    padding:2px;
+    
+}
 
+.submit:hover{
+    color:rgb(206, 210, 222);
+    background-color: #444;
+    border-color: #444;
 }
 
 
@@ -156,7 +166,20 @@ form {
     margin-left: 100px;
 }
 
+/* books data in data.html*/
 .display a{
     text-decoration: none;
+    background-color: aliceblue;
+    border: 2px solid rgb(1, 35, 160);
+    border-radius: 20px;
 
 }
+/*
+.loans p{
+    border-top: 2px solid #444;
+    border-bottom: 2px solid #444;
+    border-right:2px solid #444;
+    border-left: 2px solid #444;
+    
+}
+*/

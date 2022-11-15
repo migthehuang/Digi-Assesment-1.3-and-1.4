@@ -5,8 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}" type="text/css">
-    <title>Borrow</title>
+    <title>Document</title>
 </head>
+    
 <body>
     <header>
         <a href="/"><img src="/static/images/bibliopus.png" alt="logo" class="logo"></a>
@@ -15,30 +16,23 @@
                 <ul>
                     <li><a href="{{url_for('data')}}">Books</a></li>
                     <li><a href="{{url_for('add')}}">Add</a></li>
-                    <li><a href="{{url_for('delete')}}">Delete</a></li>
+                    <li><a href="{{url_for('delete')}}">If</a></li>
                     <li><a href="{{url_for('loans')}}">Return</a></li>
                 </ul>
             </nav>
-    
         </div>
     </header>
-    <h1>Borrow a book</h1>
-    <div class="borrower">
-        <h2>Please input your information</h2>
-        <form method="POST">
-            <input type="text" id="fname" name="fname" placeholder="First Name">
-            <input type="text" id="lname" name="lname" placeholder="Last Name">
-            <input type="text" id="email" name="email" placeholder="Email Address">
-            <input type="number" id="number" name="number" placeholder="Phone Number">
-            <input type="submit" name="borrow" id="borrow">
-            {%for title in titles%}
-            <h2>{{title.title}}</h2>
-            {%endfor%}
-        </form>
-    </div>
-    
-        
+    <h1>Verify you borrowed this book</h1>
+    <div class="returning">
+        <form methods="POST">
+            <input type="text" id="returnfname" name="returnfname" placeholder="First Name">
+            <input type="text" id="returnlname" name="returnlname" placeholder="Last Name">
+            <input type="text" id="returnemail" name="returnemail" placeholder="Email Address">
+            <input type="returnnumber" id="returnnumber" name="returnnumber" placeholder="Phone Number">
+            <input type="submit" name="return" id="return">
 
-    
+        </form>
+
+    </div>
 </body>
 </html>

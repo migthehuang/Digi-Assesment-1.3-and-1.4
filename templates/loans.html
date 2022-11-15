@@ -9,7 +9,7 @@
 </head>
 <body>
     <header>
-        <a class="logo" href="/" type="button">Biblioteca</a>
+        <a href="/"><img src="/static/images/bibliopus.png" alt="logo" class="logo"></a>
         <div class="container">
             <nav class="navbar">
                 <ul>
@@ -24,17 +24,17 @@
         
     </header>
    
-    <div class="on_loan">
+    <div class="loans">
         <h1>These are the books on loan</h1>
         <div>
             {%for loan in loans%}
-            <h2 id="title">Loan{{loan.idloan}}</h2>
-            <p>Book:{{loan.title}}, ID:{{loan.idloan}}</p>
-            <p>Borrower:{{loan.fname}} {{loan.lname}}, {{loan.idborrowers}} </p>
+            <h2 id="title">{{loan.idloan}}</h2>
+            <p>Book:{{loan.title}}, ID:{{loan.idbooks}}</p>
+            <p>Borrower:{{loan.fname}} {{loan.lname}}, ID:{{loan.borrowers_idborrowers}}</p>
             <p>Date Borrrowed:{{loan.date_borrowed}}</p>
             <p>Date Due:{{loan.date_due}}</p>
+            <a href="{{url_for('verify', loan_id=loan.idloan)}}">Return</a>
             {%endfor%}
-            <a href=""></a>
         </div>
     </div>
 </body>
