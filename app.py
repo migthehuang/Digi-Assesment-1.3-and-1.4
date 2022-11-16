@@ -64,6 +64,7 @@ def add():
         add_title = request.form['title']
         add_author = request.form['author']
         add_date_published = request.form['date_published']
+  
 
         conn = get_db_connection()
         conn.execute('INSERT INTO books (title, author, date_published) VALUES (?,?,?)', (add_title, add_author, add_date_published))   
@@ -102,7 +103,6 @@ def borrow(book_id):
         
         conn=get_db_connection()
         conn.execute('INSERT INTO borrowers (fname,lname,borrower_email,borrower_number) VALUES (?,?,?,?)', (borrower_fname, borrower_lname, borrower_email, borrower_number,))
-        titles=conn.execute('SELECT title FROM books WHERE idbooks=?',(book_id))
         conn.commit()
 
         row=conn.execute('SELECT idborrowers FROM borrowers WHERE fname=? AND lname=?',(borrower_fname, borrower_lname,))
@@ -135,7 +135,6 @@ def loans():
 
 @app.route('/verify/<int:loan_id>', methods=['GET','POST'])
 def verify():
-    #if request.method == 'POST':
 
     return render_template('verify.html')
 

@@ -23,19 +23,34 @@
         </div>
         
     </header>
-   
+    <h1>These are the books on loan</h1>
+    <br>
     <div class="loans">
-        <h1>These are the books on loan</h1>
-        <div>
+        <table class="onloan">
+            <tr>
+                <th>ID:</th>
+                <th>Book ID</th>
+                <th>Book Title</th>
+                <th>Borrower ID</th>
+                <th>Borrower</th>
+                <th>Date Borrrowed</th>
+                <th>Date Due</th>
+                <th>Return</th>
+            </tr>
             {%for loan in loans%}
-            <h2 id="title">{{loan.idloan}}</h2>
-            <p>Book:{{loan.title}}, ID:{{loan.idbooks}}</p>
-            <p>Borrower:{{loan.fname}} {{loan.lname}}, ID:{{loan.borrowers_idborrowers}}</p>
-            <p>Date Borrrowed:{{loan.date_borrowed}}</p>
-            <p>Date Due:{{loan.date_due}}</p>
-            <a href="{{url_for('verify', loan_id=loan.idloan)}}">Return</a>
+            <tr>
+                <td><p>{{loan.idloan}}</p></td>
+                <td><p>{{loan.idbooks}}</p></td>
+                <td><p>{{loan.title}}</p></td>
+                <td><p>{{loan.borrowers_idborrowers}}</p></td>
+                <td><p>{{loan.fname}} {{loan.lname}}</p></td>
+                <td><p>{{loan.date_borrowed}}</p></td>
+                <td><p>{{loan.date_due}}</p></td>
+                <td><a href="{{url_for('verify', loan_id=loan.idloan)}}">Return</a></td>
+            </tr>
             {%endfor%}
-        </div>
+        </table>
+           
     </div>
 </body>
 </html>

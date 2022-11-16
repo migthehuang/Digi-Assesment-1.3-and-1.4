@@ -2,6 +2,7 @@ body {
     background-image: url("./images/book.jpg");
     background-size: cover;
     height: 100%;
+    overflow:auto;
 }
 
 *{
@@ -65,9 +66,7 @@ nav a:hover::before{
     width: 2cm;
     height: 2cm;
     margin: 0 auto;
-    font-size: larger;
     margin-left: 40px;
-    color: azure;
     padding-bottom:2px
     
 }
@@ -134,6 +133,7 @@ header a{
     background-color: rgba(1, 35, 163, 0.2);
     border: 2px solid rgb(1, 42, 116);
     border-radius: 5px;
+    margin-left: 100px;
 }
 
 .submit{
@@ -160,19 +160,67 @@ header a{
     margin-left: 0px;
 }
 form {
-    display: flex;
-    justify-content: left;
-    align-items: left;
-    margin-left: 100px;
+    
+    margin-left: 2px;
 }
 
+/*Add page*/
+
+
+
 /* books data in data.html*/
+
+.display {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding-left: 3px;
+
+}
 .display a{
     text-decoration: none;
     background-color: aliceblue;
     border: 2px solid rgb(1, 35, 160);
     border-radius: 20px;
 
+}
+
+/*loans page table*/
+.onloan{
+    border-collapse: collapse;
+    width: auto;
+}
+.onloan th, td{
+    border: 2px double #dddddd ;
+    text-align: left;
+    padding: 8px;
+}
+
+.onloan tr:nth-child(even){
+    background-color: rgba(1, 35, 163, 0.2);
+}
+
+/* The table on the data page*/
+.bookinfo{
+    border-collapse: collapse;
+    width: auto;
+}
+.bookinfo th, td{
+    border: 2px double #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+.bookinfo tr:nth-child(even) {
+    background-color: rgba(1, 35, 163, 0.2);
+  }
+
+.searchbookinfo{
+    border-collapse: collapse;
+    width: auto;
+}
+
+.searchbookinfo th, td{
+    border: 4px double #dddddd;
+    text-align: left;
+    padding: 8px;
 }
 /*
 .loans p{
