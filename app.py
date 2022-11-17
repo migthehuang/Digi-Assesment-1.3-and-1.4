@@ -134,7 +134,17 @@ def loans():
     return render_template('loans.html',loans=loans)
 
 @app.route('/verify/<int:loan_id>', methods=['GET','POST'])
-def verify():
+def verify(loan_id):
+    idloan=int(loan_id)
+    if request.method == 'POST':
+        returnfname=request.form['returnfname']
+        returnfname=request.form['returnlname']
+        returnemail=request.form['returnemail']
+        returnnumber=request.form['returnnumber']
+        
+        conn=get_db_connection()
+        returning=conn.execute('SELECT borrowed_books.idloan, books.title, borrowed_books.borrowers_idborrowers, books.idbooks, borrowers.fname, borrowers.lname, borrowed_books.date_borrowed, borrowed_books.date_due FROM borrowed_books JOIN books ON borrowed_books.books_idbooks=books.idbooks JOIN borrowers ON borrowed_books.borrowers_idborrowers=borrowers.idborrowers WHERE idloan=?', (idloan))
+        
 
     return render_template('verify.html')
 

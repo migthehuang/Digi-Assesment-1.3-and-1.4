@@ -165,7 +165,9 @@ form {
 }
 
 /*Add page*/
-
+.add input[type=text]{
+    width:50%;
+}
 
 
 /* books data in data.html*/
