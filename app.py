@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, url_for, redirect, abort
+from flask import Flask, render_template, request, url_for, redirect, abort, flash
 import sqlite3
 from datetime import date, datetime, timedelta
 
@@ -9,6 +9,7 @@ def get_db_connection():
     conn=sqlite3.connect('sqlite/books.sdb')
     conn.row_factory=sqlite3.Row
     return conn
+
 
 #This is using the books table and is for searching the Database for books only, by title author and date published
 @app.route('/', methods = ['POST', 'GET'])
@@ -133,18 +134,26 @@ def loans():
 
     return render_template('loans.html',loans=loans)
 
-@app.route('/verify/<int:loan_id>', methods=['GET','POST'])
+@app.route('/verify/<int:loan_id>', methods = ['POST','GET'])
 def verify(loan_id):
     idloan=int(loan_id)
     if request.method == 'POST':
         returnfname=request.form['returnfname']
-        returnfname=request.form['returnlname']
+        returnlname=request.form['returnlname']
         returnemail=request.form['returnemail']
         returnnumber=request.form['returnnumber']
         
         conn=get_db_connection()
-        returning=conn.execute('SELECT borrowed_books.idloan, books.title, borrowed_books.borrowers_idborrowers, books.idbooks, borrowers.fname, borrowers.lname, borrowed_books.date_borrowed, borrowed_books.date_due FROM borrowed_books JOIN books ON borrowed_books.books_idbooks=books.idbooks JOIN borrowers ON borrowed_books.borrowers_idborrowers=borrowers.idborrowers WHERE idloan=?', (idloan))
+        returning=conn.execute('SELECT borrowed_books.idloan, borrowers.fname, borrowers.lname, borrowers.borrower_email, borrowers.borrower_number FROM borrowed_books JOIN borrowers ON borrowed_books.borrowers_idborrowers=borrowers.idborrowers WHERE idloan=?', (idloan))
+        conn.commit()
+        results= conn.execute('SELECT fname,lname,borrower_email,borrower_number FROM returning WHERE fname=? AND lname=? AND borrower_email=? AND borrower_number=?', (returnfname, returnlname, returnemail, returnnumber)).fetchall()
+        conn.close()
         
+        if len(results) == 0:
+            flash('Incorrect information supplied')
+        
+        else:
+            return redirect(url_for('thankyou'))
 
     return render_template('verify.html')
 

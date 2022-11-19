@@ -1,8 +1,9 @@
 body {
-    background-image: url("./images/book.jpg");
+    background-image: linear-gradient(rgba(15, 22, 35, 0.7),rgba(15, 22, 36, 0.7)), url("./images/book.jpg");
     background-size: cover;
     height: 100%;
     overflow:auto;
+    
 }
 
 *{
@@ -75,7 +76,7 @@ nav a:hover::before{
     border-color:#444;
  }
 header{
-    background-color:rgb(1, 42, 116);
+    background-color:#0D1B2A;
 }
 
 header::after{
@@ -159,15 +160,69 @@ header a{
     align-items: left;
     margin-left: 0px;
 }
-form {
-    
-    margin-left: 2px;
-}
+
 
 /*Add page*/
-.add input[type=text]{
-    width:50%;
+
+.add{
+    margin-bottom: 20px;
 }
+
+.addheader{
+    width: 150px;
+    height: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 5px;
+    background-color: #415A77;
+    border-radius: 10px;
+    font-size: 11px;
+    margin-top: -10px;
+    margin-bottom: -10px;
+}
+
+.addborder{
+    padding:80px;
+    width: 200px;
+    height: 300px;
+    border: 1px solid #1B263B;
+    border-radius: 10px;
+    background-color: #0D1B2AF2;
+    
+}
+
+.btn {
+    padding: 10px 40px;
+    background-color: #415A77;
+    color: #FFFFFF;
+    font-style: oblique;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+.textbox{
+    padding: 10px;
+    background-color: #415A77;
+    color: #FFFFFF;
+    border-radius: 10px;
+    text-align: center;
+}
+    
+::placeholder {
+    color: #868686;
+    opacity: 1;
+    font-weight: bold;
+}
+
+
+.addbook{
+    color: #FFFFFF;
+    font-style: oblique;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+
 
 
 /* books data in data.html*/
