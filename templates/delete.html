@@ -25,14 +25,19 @@
         </div>
         
     </header>
-    <h1>Delete a book</h1>
-    <div class="rm">
-        <form method="POST">
-            
-            <input type="number" id="rm_book_id" name="book_id" placeholder="book id">
-            <input type= "submit" name="enter" id="enter">
-        </form>
-
+    
+    <div class="rm" align="center">
+        <div align="center" class="rmborder">
+            <div class="rmheader">
+                <h1 class="rmbook">Delete a book</h1>
+            </div><br><br>
+            <h2 class="rmbook">
+                <form method="POST">
+                    <input type="number" id="rm_book_id" name="book_id" placeholder="Book ID" class="textbox" required><br>
+                    <input type= "submit" name="enter" id="enter" class="rmbtn">
+                </form>
+            </h2>
+        </div>
     </div>
 </body>
 </html>

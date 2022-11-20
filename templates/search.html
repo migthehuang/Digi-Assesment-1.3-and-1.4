@@ -27,25 +27,27 @@
     <br>
     {%if books%}
    <div class="data" >
-        <table class="searchbookinfo">
-            <tr>
-                <th>ID</th>
-                <th>Title</th>
-                <th>Author</th>
-                <th>Year Published</th>
-                <th>Borrow</th>
-            </tr>
-            {%for book in books%}
-            <tr>
-                <td><p>{{book.idbooks}}</p></td>
-                <td><p>{{book.title}}</p></td>
-                <td><p>{{book.author}}</p></td>
-                <td><p>{{book.date_published}}</p></td>
-                <td> <a href="{{url_for('borrow',book_id=book.idbooks)}}">Borrow</a></td>
-            </tr>
-            {%endfor%}
-        
-
+        <table class="bookinfo">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Year Published</th>
+                    <th>Borrow</th>
+                </tr>
+            </thead>
+            <tbody>
+                {%for book in books%}
+                <tr>
+                    <td><p>{{book.idbooks}}</p></td>
+                    <td><p>{{book.title}}</p></td>
+                    <td><p>{{book.author}}</p></td>
+                    <td><p>{{book.date_published}}</p></td>
+                    <td> <a href="{{url_for('borrow',book_id=book.idbooks)}}">Borrow</a></td>
+                </tr>
+                {%endfor%}
+            </tbody>
         </table>
     </div>
     {%else%}

@@ -72,8 +72,7 @@ nav a:hover::before{
     
 }
  .logo:hover{
-    color:#444;
-    border-color:#444;
+    transform: scale(1.1);
  }
 header{
     background-color:#0D1B2A;
@@ -99,7 +98,7 @@ header a{
     display: flex;
     justify-content: left;
     align-items: left;
-    color: rgb(1, 42, 116);
+    color: #0D1B2A;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 40px;
     margin-left: 100px;
@@ -107,20 +106,10 @@ header a{
 }
 
 /*Searching on the home page*/
-.search p {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 20px;
-    color: rgb(1, 42, 116);
-    display: flex;
-    justify-content: left;
-    align-items: left;
-    margin-left: 100px;
-}
-
 .search h2{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 25px;
-    color: rgb(1, 42, 116);
+    color: #0D1B2A;
     display: flex;
     align-items: left;
     margin-left: 100px;
@@ -130,20 +119,26 @@ header a{
     width:50%;
     font-family:Verdana, Geneva, Tahoma, sans-serif;
     font-size: 15px;
-    color:black;
-    background-color: rgba(1, 35, 163, 0.2);
-    border: 2px solid rgb(1, 42, 116);
+    border: 2px solid #d4d4d4;
     border-radius: 5px;
     margin-left: 100px;
+    padding: 5px;
+    background-color: #415A7766;
+    color: #FFFFFF;
+    border-radius: 10px;
+    text-align: left;
+   
 }
 
 .submit{
-    width: 1.4cm;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    background-color: rgb(206, 210, 222);
-    border: 2px solid rgb(1, 35, 160);
-    border-radius: 40px;
-    padding:2px;
+    border: 2px solid rgb(255, 255, 255);
+    padding:5px 20px;
+    background-color: #415A77;
+    color: #FFFFFF;
+    font-style: oblique;
+    font-weight: bold;
+    border-radius: 10px;
     
 }
 
@@ -165,7 +160,7 @@ header a{
 /*Add page*/
 
 .add{
-    margin-bottom: 20px;
+    margin-top: -30px;
 }
 
 .addheader{
@@ -177,15 +172,15 @@ header a{
     background-color: #415A77;
     border-radius: 10px;
     font-size: 11px;
-    margin-top: -10px;
-    margin-bottom: -10px;
+    margin-top: -20px;
+    margin-bottom: -20px;
 }
 
 .addborder{
     padding:80px;
     width: 200px;
     height: 300px;
-    border: 1px solid #1B263B;
+    border: 3px solid #d4d4d4;
     border-radius: 10px;
     background-color: #0D1B2AF2;
     
@@ -206,6 +201,9 @@ header a{
     color: #FFFFFF;
     border-radius: 10px;
     text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+
 }
     
 ::placeholder {
@@ -220,10 +218,97 @@ header a{
     font-style: oblique;
     font-weight: bold;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-top: 10px;
 }
 
+/*This is for the delete */
 
+.rm{
+    margin-top: 60px;
+}
 
+.rmheader{
+    width: 150px;
+    height: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 5px;
+    background-color: #415A77;
+    border-radius: 10px;
+    font-size: 9px;
+    margin-top: -20px;
+    margin-bottom: -20px;
+    
+    
+}
+
+.rmborder{
+    padding:80px;
+    width: 200px;
+    height: 120px;
+    border: 3px solid #d4d4d4;
+    border-radius: 10px;
+    background-color: #0D1B2AF2;
+    
+}
+
+.rmbook{
+    color: #FFFFFF;
+    font-style: oblique;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-top: 10px;
+}
+ .rmbtn{
+    padding: 10px 40px;
+    background-color: #415A77;
+    color: #FFFFFF;
+    font-style: oblique;
+    font-weight: bold;
+    border-radius: 10px;
+    margin-top: 20px;
+ }
+
+/*This is for the borrowing page*/
+.borrow{
+    margin-top: 60px;
+}
+
+.borrowheader{
+    width: 150px;
+    height: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 5px;
+    background-color: #415A77;
+    border-radius: 10px;
+    font-size: 9px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-top: -23px;
+    margin-bottom: -20px;
+    color: #d4d4d4;
+}
+.borrowheader h1{
+    margin-top: 10px;
+}
+
+.borrowborder{
+    padding:80px;
+    width: 200px;
+    height: 350px;
+    border: 3px solid #d4d4d4;
+    border-radius: 10px;
+    background-color: #0D1B2AF2;
+    
+}
+
+.borrowbook{
+    color: #FFFFFF;
+    font-style: oblique;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-top: 10px;
+}
 
 /* books data in data.html*/
 
@@ -241,6 +326,11 @@ header a{
 }
 
 /*loans page table*/
+.loans a{
+    text-decoration: none;
+    color: #d4d4d4;
+
+}
 .onloan{
     border-collapse: collapse;
     width: auto;
@@ -249,6 +339,7 @@ header a{
     border: 2px double #dddddd ;
     text-align: left;
     padding: 8px;
+    color: #d4d4d4;
 }
 
 .onloan tr:nth-child(even){
@@ -258,33 +349,40 @@ header a{
 /* The table on the data page*/
 .bookinfo{
     border-collapse: collapse;
-    width: auto;
+    min-width: 400px;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    margin: 25px 0;
+    box-shadow: 0 0 20px rgba(0,0,0,0.15);
+    margin-left: 20px;
 }
-.bookinfo th, td{
-    border: 2px double #dddddd;
+.bookinfo thead tr{
+    background-color: #0D1B2A;
+    color: #d4d4d4;
     text-align: left;
-    padding: 8px;
 }
-.bookinfo tr:nth-child(even) {
-    background-color: rgba(1, 35, 163, 0.2);
-  }
+.bookinfo th,
+.bookinfo td{
+    padding: 12px 15px;
+}
 
+.bookinfo tbody tr{
+    border-bottom: thin solid #0D1B2A;
+    background-color: #415A77;
+    
+}
+.bookinfo tbody tr:nth-of-type(even){
+    background-color: #868686;
+}
+
+  /*table when searching on the search page*/
 .searchbookinfo{
     border-collapse: collapse;
     width: auto;
 }
 
 .searchbookinfo th, td{
-    border: 4px double #dddddd;
+    border: 4px #dddddd;
     text-align: left;
     padding: 8px;
 }
-/*
-.loans p{
-    border-top: 2px solid #444;
-    border-bottom: 2px solid #444;
-    border-right:2px solid #444;
-    border-left: 2px solid #444;
-    
-}
-*/

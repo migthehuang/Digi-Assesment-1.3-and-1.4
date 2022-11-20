@@ -28,23 +28,28 @@
 <div class="display">
     
     <table class="bookinfo">
-        <tr>
-            <th>ID</th>
-            <th>Title</th>
-            <th>Author</th>
-            <th>Year Published</th>
-            <th>Borrow</th>
-        </tr>
-        {%for data in datas%}
-        <tr>
-            <td><p>{{data[0]}}</p></td>
-            <td><h4>{{data[1]}}</h4></td>
-            <td><p>{{data[2]}}</p></td>
-            <td><p>{{data[3]}}</p></td>
-            <td> <a href="{{url_for('borrow',book_id=data.idbooks)}}">Borrow</a></td>
-        </tr>
-        {%endfor%}
-        
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Year Published</th>
+                <th>Borrow</th>
+            </tr>
+        </thead>
+        <tbody>
+            {%for data in datas%}
+            <tr>
+                <td><p>{{data[0]}}</p></td>
+                <td><h4>{{data[1]}}</h4></td>
+                <td><p>{{data[2]}}</p></td>
+                <td><p>{{data[3]}}</p></td>
+                <td> <a href="{{url_for('borrow',book_id=data.idbooks)}}">Borrow</a></td>
+            </tr>
+            {%endfor%}
+        </tbody>
+       
+       
 
     </table>
         
