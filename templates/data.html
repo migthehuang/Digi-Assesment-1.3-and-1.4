@@ -24,7 +24,7 @@
     </div>
     
 </header>
-<h1>These are our books</h1>
+<h1 class="pagehead">These are our books</h1>
 <div class="display">
     
     <table class="bookinfo">
@@ -44,7 +44,7 @@
                 <td><h4>{{data[1]}}</h4></td>
                 <td><p>{{data[2]}}</p></td>
                 <td><p>{{data[3]}}</p></td>
-                <td> <a href="{{url_for('borrow',book_id=data.idbooks)}}">Borrow</a></td>
+                <td> <a type="button" class="bttn" href="{{url_for('borrow',book_id=data.idbooks)}}">Borrow</a></td>
             </tr>
             {%endfor%}
         </tbody>

@@ -117,7 +117,7 @@ def borrow(book_id):
         conn.execute('INSERT INTO borrowed_books (books_idbooks,borrowers_idborrowers,date_borrowed,date_due, returned) VALUES(?,?,?,?,0)', (book_idint,idborrowers, date_borrowed,due_date,))
         conn.commit() 
         conn.close
-        return redirect(url_for('thankyou'))
+        return redirect(url_for('loans'))
 
 
     return render_template('borrow.html')
@@ -126,36 +126,19 @@ def borrow(book_id):
 def thankyou():
     return render_template('thankyou.html')
 
-@app.route('/loans')
+@app.route('/loans', methods=['POST','GET'])
 def loans():
     conn=get_db_connection()
-    loans=conn.execute('SELECT borrowed_books.idloan, books.title, borrowed_books.borrowers_idborrowers, books.idbooks, borrowers.fname, borrowers.lname, borrowed_books.date_borrowed, borrowed_books.date_due FROM borrowed_books JOIN books ON borrowed_books.books_idbooks=books.idbooks JOIN borrowers ON borrowed_books.borrowers_idborrowers=borrowers.idborrowers WHERE returned=0',).fetchall()
-    conn.close()
+    loans=conn.execute('SELECT borrowed_books.idloan, books.title, borrowed_books.borrowers_idborrowers, books.idbooks, borrowers.fname, borrowers.lname, borrowed_books.date_borrowed, borrowed_books.date_due FROM borrowed_books JOIN books ON borrowed_books.books_idbooks=books.idbooks JOIN borrowers ON borrowed_books.borrowers_idborrowers=borrowers.idborrowers WHERE borrowed_books.returned=0',).fetchall()
+
+    if request.method=='POST':
+        idloan=request.form['form_idloan']
+        conn.execute('UPDATE borrowed_books SET returned = 1 WHERE idloan=?', (idloan,))
+        conn.commit()
+        conn.close()
+        return redirect(url_for('home'))
 
     return render_template('loans.html',loans=loans)
-
-@app.route('/verify/<int:loan_id>', methods = ['POST','GET'])
-def verify(loan_id):
-    idloan=int(loan_id)
-    if request.method == 'POST':
-        returnfname=request.form['returnfname']
-        returnlname=request.form['returnlname']
-        returnemail=request.form['returnemail']
-        returnnumber=request.form['returnnumber']
-        
-        conn=get_db_connection()
-        returning=conn.execute('SELECT borrowed_books.idloan, borrowers.fname, borrowers.lname, borrowers.borrower_email, borrowers.borrower_number FROM borrowed_books JOIN borrowers ON borrowed_books.borrowers_idborrowers=borrowers.idborrowers WHERE idloan=?', (idloan))
-        conn.commit()
-        results= conn.execute('SELECT fname,lname,borrower_email,borrower_number FROM returning WHERE fname=? AND lname=? AND borrower_email=? AND borrower_number=?', (returnfname, returnlname, returnemail, returnnumber)).fetchall()
-        conn.close()
-        
-        if len(results) == 0:
-            flash('Incorrect information supplied')
-        
-        else:
-            return redirect(url_for('thankyou'))
-
-    return render_template('verify.html')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug= True)

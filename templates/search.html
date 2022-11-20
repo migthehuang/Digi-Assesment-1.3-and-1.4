@@ -23,10 +23,10 @@
         </div>
         
     </header>
-    <h1>Here's what we found for "{{term}}"</h1>
+    <h1 class="pagehead">Here's what we found for "{{term}}"</h1>
     <br>
     {%if books%}
-   <div class="data" >
+   <div class="display" >
         <table class="bookinfo">
             <thead>
                 <tr>
@@ -44,7 +44,7 @@
                     <td><p>{{book.title}}</p></td>
                     <td><p>{{book.author}}</p></td>
                     <td><p>{{book.date_published}}</p></td>
-                    <td> <a href="{{url_for('borrow',book_id=book.idbooks)}}">Borrow</a></td>
+                    <td><a class="bttn" type="button" href="{{url_for('borrow',book_id=book.idbooks)}}">Borrow</a></td>
                 </tr>
                 {%endfor%}
             </tbody>

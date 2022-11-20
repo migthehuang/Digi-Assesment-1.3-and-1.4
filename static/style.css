@@ -149,14 +149,6 @@ header a{
 }
 
 
-.data{
-    display:list-item;
-    justify-content: left;
-    align-items: left;
-    margin-left: 0px;
-}
-
-
 /*Add page*/
 
 .add{
@@ -314,15 +306,10 @@ header a{
 
 .display {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    padding-left: 3px;
 
 }
 .display a{
     text-decoration: none;
-    background-color: aliceblue;
-    border: 2px solid rgb(1, 35, 160);
-    border-radius: 20px;
-
 }
 
 /*loans page table*/
@@ -360,14 +347,23 @@ header a{
     background-color: #0D1B2A;
     color: #d4d4d4;
     text-align: left;
+    border: 0cm;
+    border-radius: 20%;
 }
+.bookinfo th:first-child{
+    border-radius:10px 0 0 0;
+  }
+  
+.bookinfo th:last-child{
+    border-radius:0 10px 0 0;
+  }
 .bookinfo th,
 .bookinfo td{
     padding: 12px 15px;
 }
 
 .bookinfo tbody tr{
-    border-bottom: thin solid #0D1B2A;
+    border-bottom: 2px solid #0D1B2A;
     background-color: #415A77;
     
 }
@@ -385,4 +381,28 @@ header a{
     border: 4px #dddddd;
     text-align: left;
     padding: 8px;
+}
+
+.bttn{
+    background-color: #0D1B2A;
+    color: #d4d4d4;
+    border: none;
+    border-radius: 10px;
+    padding: 5px 8px 5px 8px;
+    font-size: 12px;
+    box-shadow: 0px 0px 3px 0.5px #444;
+}
+
+.bttn:hover{
+    background-color: #d4d4d4;
+    color: #444;
+    transition: 0.4s;
+    box-shadow: #415A77;
+}
+
+.pagehead{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #d4d4d4;
+    margin-left: 20px;
+    margin-top: 20px;
 }

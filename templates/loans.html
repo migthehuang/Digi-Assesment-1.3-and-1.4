@@ -23,34 +23,45 @@
         </div>
         
     </header>
-    <h1>These are the books on loan</h1>
+    <h1 class="pagehead">These are the books on loan</h1>
     <br>
-    <div class="loans">
-        <table class="onloan">
-            <tr>
-                <th>ID:</th>
-                <th>Book ID</th>
-                <th>Book Title</th>
-                <th>Borrower ID</th>
-                <th>Borrower</th>
-                <th>Date Borrrowed</th>
-                <th>Date Due</th>
-                <th>Return</th>
-            </tr>
-            {%for loan in loans%}
-            <tr>
-                <td><p>{{loan.idloan}}</p></td>
-                <td><p>{{loan.idbooks}}</p></td>
-                <td><p>{{loan.title}}</p></td>
-                <td><p>{{loan.borrowers_idborrowers}}</p></td>
-                <td><p>{{loan.fname}} {{loan.lname}}</p></td>
-                <td><p>{{loan.date_borrowed}}</p></td>
-                <td><p>{{loan.date_due}}</p></td>
-                <td><a href="{{url_for('verify', loan_id=loan.idloan)}}">Return</a></td>
-            </tr>
-            {%endfor%}
+    <div class="display">
+        <table class="bookinfo">
+            <thead>
+                <tr>
+                    <th>ID:</th>
+                    <th>Book ID</th>
+                    <th>Book Title</th>
+                    <th>Borrower ID</th>
+                    <th>Borrower</th>
+                    <th>Date Borrrowed</th>
+                    <th>Date Due</th>
+                    <th>Return</th>
+                </tr>
+            </thead>
+            <tbody>
+                {%for loan in loans%}
+                <tr>
+                    <td><p>{{loan.idloan}}</p></td>
+                    <td><p>{{loan.idbooks}}</p></td>
+                    <td><p>{{loan.title}}</p></td>
+                    <td><p>{{loan.borrowers_idborrowers}}</p></td>
+                    <td><p>{{loan.fname}} {{loan.lname}}</p></td>
+                    <td><p>{{loan.date_borrowed}}</p></td>
+                    <td><p>{{loan.date_due}}</p></td>
+                    <form action="" method="post">
+                        <input type="hidden" name="form_idloan" id="form_idloan" value="{{loan.idloan}}">
+                        <td><input type="submit" class="bttn" value="Return"></td>
+                    </form>
+                    
+                {%endfor%}
+                </tr>
+                
+            </tbody>
+           
         </table>
            
     </div>
+    
 </body>
 </html>
